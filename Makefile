@@ -1,4 +1,4 @@
-OBJS	= main.o Part_A.o Part_B.o
+OBJECTS	= main.o Part_A.o Part_B.o
 SOURCE	= main.c Part_A.c Part_B.c
 HEADER	= Part_A.h Part_B.h
 OUT	= main
@@ -9,8 +9,8 @@ LFLAGS	 =
 run: $(OUT)
 	./$(OUT)
 
-all: $(OBJS)
-	$(CC) -g $(OBJS) -o main $(LFLAGS)
+all: $(OBJECTS)
+	$(CC) -g $(OBJECTS) -o $(OUT) $(LFLAGS)
 
 #main: main.o
 #	./main
@@ -26,4 +26,4 @@ Part_B.o: Part_B.c
 
 
 clean:
-	rm -f $(OBJS) main
+	rm -f $(OBJECTS) main
