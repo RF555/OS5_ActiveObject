@@ -26,5 +26,7 @@ void enqueue(SafeQueue *queue, void *data);
 
 void *dequeue(SafeQueue *queue);
 
+void freeQueue(SafeQueue *queue);
+
 
 #endif

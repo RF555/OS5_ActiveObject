@@ -54,3 +54,14 @@ void *dequeue(SafeQueue *queue) {
 
     return data;
 }
+
+void freeQueue(SafeQueue *queue) {
+    while (queue->head != NULL) {
+        Node *temp_node = queue->head;
+        queue->head = queue->head->next;
+        free(temp_node);
+    }
+    pthread_mutex_destroy(&queue->mutex);
+    pthread_cond_destroy(&queue->cond);
+    free(queue);
+}
