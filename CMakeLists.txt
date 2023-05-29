@@ -10,4 +10,4 @@ add_executable(OS5_ActiveObject
         Part_A.h
         Part_B.c
         Part_B.h
-            main.c)
+        demo.c)

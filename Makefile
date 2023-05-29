@@ -3,9 +3,9 @@ CC = gcc
 C_FLAGS	= -Wall -std=c11
 
 # source files & object files
-SOURCES	= main.c Part_A.c Part_B.c
+SOURCES	= demo.c Part_A.c Part_B.c
 HEADERS	= Part_A.h Part_B.h
-OBJECTS	= objects/main.o objects/Part_A.o objects/Part_B.o objects/main.o
+OBJECTS	= objects/demo.o objects/Part_A.o objects/Part_B.o objects/demo.o
 
 
 .PHONY: all
