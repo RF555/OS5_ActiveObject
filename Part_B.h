@@ -5,21 +5,26 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-#define QUEUE_SIZE 1000
+// Node structure for the queue
+typedef struct Node {
+    void *data;
+    struct Node *next;
+} Node;
 
-typedef struct {
-    int data[QUEUE_SIZE];
-    int front;
-    int rear;
-    int count;
+// Thread-safe queue structure
+typedef struct SafeQueue {
+    Node *head;
+    Node *tail;
     pthread_mutex_t mutex;
     pthread_cond_t cond;
 } SafeQueue;
 
-void initializeQueue(SafeQueue *queue);
 
-void enqueue(SafeQueue *queue, int item);
+void initQueue(SafeQueue *queue);
 
-int dequeue(SafeQueue *queue);
+void enqueue(SafeQueue *queue, void *data);
+
+void *dequeue(SafeQueue *queue);
+
 
 #endif
