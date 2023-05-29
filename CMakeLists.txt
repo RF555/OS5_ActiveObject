@@ -7,4 +7,7 @@ include_directories(.)
 
 add_executable(OS5_ActiveObject
         Part_A.c
-        Part_A.h)
+        Part_A.h
+        Part_B.c
+        Part_B.h
+            main.c)

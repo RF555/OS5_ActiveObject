@@ -56,6 +56,20 @@ build CMakeFiles/OS5_ActiveObject.dir/Part_A.c.o: C_COMPILER__OS5_ActiveObject_D
   OBJECT_DIR = CMakeFiles/OS5_ActiveObject.dir
   OBJECT_FILE_DIR = CMakeFiles/OS5_ActiveObject.dir
 
+build CMakeFiles/OS5_ActiveObject.dir/Part_B.c.o: C_COMPILER__OS5_ActiveObject_Debug /home/roey-ubuntu/CLionProjects/OS5_ActiveObject/Part_B.c || cmake_object_order_depends_target_OS5_ActiveObject
+  DEP_FILE = CMakeFiles/OS5_ActiveObject.dir/Part_B.c.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  INCLUDES = -I/home/roey-ubuntu/CLionProjects/OS5_ActiveObject/.
+  OBJECT_DIR = CMakeFiles/OS5_ActiveObject.dir
+  OBJECT_FILE_DIR = CMakeFiles/OS5_ActiveObject.dir
+
+build CMakeFiles/OS5_ActiveObject.dir/main.c.o: C_COMPILER__OS5_ActiveObject_Debug /home/roey-ubuntu/CLionProjects/OS5_ActiveObject/main.c || cmake_object_order_depends_target_OS5_ActiveObject
+  DEP_FILE = CMakeFiles/OS5_ActiveObject.dir/main.c.o.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  INCLUDES = -I/home/roey-ubuntu/CLionProjects/OS5_ActiveObject/.
+  OBJECT_DIR = CMakeFiles/OS5_ActiveObject.dir
+  OBJECT_FILE_DIR = CMakeFiles/OS5_ActiveObject.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target OS5_ActiveObject
@@ -64,7 +78,7 @@ build CMakeFiles/OS5_ActiveObject.dir/Part_A.c.o: C_COMPILER__OS5_ActiveObject_D
 #############################################
 # Link the executable OS5_ActiveObject
 
-build OS5_ActiveObject: C_EXECUTABLE_LINKER__OS5_ActiveObject_Debug CMakeFiles/OS5_ActiveObject.dir/Part_A.c.o
+build OS5_ActiveObject: C_EXECUTABLE_LINKER__OS5_ActiveObject_Debug CMakeFiles/OS5_ActiveObject.dir/Part_A.c.o CMakeFiles/OS5_ActiveObject.dir/Part_B.c.o CMakeFiles/OS5_ActiveObject.dir/main.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/OS5_ActiveObject.dir
   POST_BUILD = :

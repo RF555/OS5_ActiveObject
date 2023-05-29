@@ -1,4 +1,3 @@
-#include "Part_A.h"
 #include "Part_B.h"
 
 // Example usage
