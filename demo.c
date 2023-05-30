@@ -29,8 +29,9 @@ void *consumer(void *arg) {
 }
 
 int main() {
-    PSafeQueue queue = NULL;
-    initQueue(queue);
+    printf("initiated queue\n");
+    SafeQueue queue;
+    initQueue(&queue);
     printf("initiated queue\n");
 
     pthread_t producerThread, consumerThread;

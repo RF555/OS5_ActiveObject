@@ -5,7 +5,7 @@ C_FLAGS	= -Wall -std=c11
 # source files & object files
 SOURCES	= demo.c Part_A.c Part_B.c
 HEADERS	= Part_A.h Part_B.h
-OBJECTS	= objects/demo.o objects/Part_A.o objects/Part_B.o objects/demo.o
+OBJECTS	= objects/demo.o objects/Part_A.o objects/Part_B.o
 
 
 .PHONY: all
