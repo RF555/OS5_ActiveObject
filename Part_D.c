@@ -4,7 +4,7 @@ ActiveObject ao1, ao2, ao3, ao4;
 SafeQueue queue1, queue2, queue3, queue4;
 
 void AO_Task1(void *task1) {
-    printf("Called AO_Task1()\n");
+//    printf("Called AO_Task1()\n");
     task_t *task = (task_t *) task1;
     static int init = 0;
     if (!init) {
@@ -20,7 +20,8 @@ void AO_Task1(void *task1) {
         *new_task = *task;
         new_task->number = (rand() % 900000) + 100000;
         new_task->serial = i + 1;
-        printf("%d number: %d\n", new_task->serial, new_task->number);
+//        printf("%d number: %d\n", new_task->serial, new_task->number);
+        printf("%d\n", new_task->number);
         struct timespec remaining, request = {0, 1000};
         nanosleep(&request, &remaining);
         enqueue(&queue2, new_task);
@@ -29,29 +30,35 @@ void AO_Task1(void *task1) {
 }
 
 void AO_Task2(void *task2) {
-    printf("Called AO_Task2()\n");
+//    printf("Called AO_Task2()\n");
     task_t *task = (task_t *) task2;
-    printf("%d number: %d\n", task->serial, task->number);
-    printf("Is %d prime: %s\n", task->number, isPrime(task->number) ? "True" : "False");
+//    printf("%d number: %d\n", task->serial, task->number);
+    printf("%d\n", task->number);
+//    printf("Is %d prime: %s\n", task->number, isPrime(task->number) ? "True" : "False");
+    printf("%s\n", isPrime(task->number) ? "True" : "False");
     task->number += 11;
     enqueue(&queue3, task);
 }
 
 void AO_Task3(void *task3) {
-    printf("Called AO_Task3()\n");
+//    printf("Called AO_Task3()\n");
     task_t *task = (task_t *) task3;
-    printf("%d number: %d\n", task->serial, task->number);
-    printf("Is %d prime: %s\n", task->number, isPrime(task->number) ? "True" : "False");
+//    printf("%d number: %d\n", task->serial, task->number);
+    printf("%d\n", task->number);
+//    printf("Is %d prime: %s\n", task->number, isPrime(task->number) ? "True" : "False");
+    printf("%s\n", isPrime(task->number) ? "True" : "False");
     task->number -= 13;
     enqueue(&queue4, task);
 }
 
 void AO_Task4(void *task4) {
-    printf("Called AO_Task4()\n");
+//    printf("Called AO_Task4()\n");
     task_t *task = (task_t *) task4;
-    printf("%d number: %d\n", task->serial, task->number);
+//    printf("%d number: %d\n", task->serial, task->number);
+    printf("%d\n", task->number);
     task->number += 2;
-    printf("new %d number: %d\n", task->serial, task->number);
+//    printf("new %d number: %d\n", task->serial, task->number);
+    printf("%d\n", task->number);
 }
 
 void setupPipeline(int _nums, int _rand_seed) {
