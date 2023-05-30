@@ -5,9 +5,9 @@ C_FLAGS	= -Wall -pedantic -std=c11 -pthread
 # source files & object files
 SOURCES	= demo.c Part_A.c Part_B.c Part_C.c Part_D.c
 HEADERS	= Part_A.h Part_B.h Part_C.h Part_D.h
-MAIN_OBJECT = objects/main.o
-DEMO_OBJECT = objects/demo.o
-OBJECTS	= objects/Part_A.o objects/Part_B.o objects/Part_C.o objects/Part_D.o
+MAIN_OBJECT = main.o
+DEMO_OBJECT = demo.o
+OBJECTS	= Part_A.o Part_B.o Part_C.o Part_D.o
 
 
 .PHONY: all
