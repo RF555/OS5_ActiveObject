@@ -1,24 +1,11 @@
 #include "Part_C.h"
 
-// Creates a new active object and starts its thread
-ActiveObject *createActiveObject(int (*func)(void *)) {
-    ActiveObject *ao = (ActiveObject *) malloc(sizeof(ActiveObject));
-    ao->func = func;
-    ao->queue = NULL;
-    initQueue(ao->queue);
-    pthread_create(&ao->thread, NULL, activeObjectThread, ao); // Creates thread and do the function
-    return ao;
-}
-
-/* This function is called by the thread,
-   it will dequeue the queue and execute the function passed in the active object */
-void *activeObjectThread(ActiveObject *ao) {
-    if (ao == NULL) return NULL; // If active object is null, return
-    void *task = dequeue(ao->queue);
-    while (task != NULL) { // While the queue is not empty
-        ao->func(task);
-        task = dequeue(ao->queue);
-    }
+void CreateActiveObject(ActiveObject *ao, SafeQueue *queue, Task task) {
+    ao->task = task;
+    ao->queue = queue;
+    ao->active = 1;
+    pthread_create(&ao->thread, NULL, activeObjectThread, ao);
+    pthread_detach(ao->thread);
 }
 
 SafeQueue *GetQueue(ActiveObject *ao) {
@@ -26,7 +13,38 @@ SafeQueue *GetQueue(ActiveObject *ao) {
 }
 
 void stop(ActiveObject *ao) {
-    pthread_exit(&ao->thread);
-    free(ao->queue);
-    free(ao);
+    ao->active = 0;
+
+    pthread_cond_broadcast(&ao->queue->cond);
+
+    pthread_join(ao->thread, NULL);
+
+    pthread_mutex_lock(&ao->queue->mutex);
+
+    while (ao->queue->size > 0) {
+        pthread_cond_wait(&ao->queue->cond, &ao->queue->mutex); // Wait until the queue is empty
+    }
+
+    pthread_mutex_unlock(&ao->queue->mutex);
 }
+
+void *activeObjectThread(void *arg) {
+    ActiveObject *ao = (ActiveObject *) arg;
+
+    while (1) {
+        void *task = dequeue(ao->queue);
+        if (task != NULL) {
+            ao->task(task);
+        } else {
+            pthread_mutex_lock(&ao->queue->mutex);
+            int stop = !(ao->active);
+            pthread_mutex_unlock(&ao->queue->mutex);
+
+            if (stop) {
+                break;
+            }
+        }
+    }
+    pthread_exit(NULL);
+}
+
